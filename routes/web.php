@@ -1,22 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\SendTestMail;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
-    Mail::to('abc@gmail.com')->send(new SendTestMail());
+
+    //dispatch the Mail sending Job so that we can directly send Mails with help of database
+    //basically start the email sending Job
+    dispatch(new \App\Jobs\SendEmailJob());
 
     return view('welcome');
 });
