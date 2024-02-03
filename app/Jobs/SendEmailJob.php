@@ -32,7 +32,9 @@ class SendEmailJob implements ShouldQueue
      */
     public function handle()
     {
-        //we will need dB table of jobs for storing all jobs
+        //Now, Since we are using Redis We don't even require any Jobs Table in Database because we are directly 
+        //using Redis to sort things out. 
+
         Mail::to('abc@gmail.com')->send(new SendTestMail());
     }
 }
